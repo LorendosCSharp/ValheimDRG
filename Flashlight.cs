@@ -29,7 +29,6 @@ namespace FirstValheimMod
                 MyLogger.Error("Pool is null!");
                 return;
             }
-            MyLogger.Error(pool.Count.ToString());
             // Get the next flare in the pool
             PooledFlare flare = pool[currentIndex];
 
@@ -63,7 +62,7 @@ namespace FirstValheimMod
         }
 
         #region Pool
-        public void InstantiateFlares(float flareStenght, string flareColor)
+        public void InstantiateFlares(float flareStenght, string flareColor,float flareRange)
         {
             for (int i = 0; i < poolSize; i++)
             {
@@ -104,6 +103,7 @@ namespace FirstValheimMod
                 if (pf.Light != null)
                 {
                     pf.Light.intensity = flareStenght;
+                    pf.Light.range = flareRange;
                     pf.Light.color = c;
                 }
 

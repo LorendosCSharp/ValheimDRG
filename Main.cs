@@ -14,9 +14,10 @@ namespace FirstValheimMod
         const string pluginName = "DRGFlashlight";
         const string pluginVersion = "0.0.1";
 
-        public static ConfigEntry<KeyboardShortcut> TrowLight;
-        public static ConfigEntry<string> FlareColor;
+        public static ConfigEntry<KeyboardShortcut> FlareLightTrow;
+        public static ConfigEntry<string> FlareLightColor;
         public static ConfigEntry<float> FlareLightStrenght;
+        public static ConfigEntry<float> FlareLightRange;
 
         private readonly Harmony HarmonyInstance = new Harmony(pluginGUID);
 
@@ -50,7 +51,7 @@ namespace FirstValheimMod
                 SceneManager.MoveGameObjectToScene(flashlightGO, scene);
                 flashlight = flashlightGO.AddComponent<Flashlight>();
 
-                flashlight.InstantiateFlares(FlareLightStrenght.Value, FlareColor.Value);
+                flashlight.InstantiateFlares(FlareLightStrenght.Value, FlareLightColor.Value,FlareLightRange.Value);
             }
         }
 
@@ -58,7 +59,7 @@ namespace FirstValheimMod
         {
             if (Player.m_localPlayer == null || flashlight == null) return;
 
-            if (UnityInput.Current.GetKeyDown(TrowLight.Value.MainKey))
+            if (UnityInput.Current.GetKeyDown(FlareLightTrow.Value.MainKey))
             {
                 MyLogger.Info("Flashlight was thrown");
                 flashlight.SpawnFlare(Player.m_localPlayer.transform.position + 2 * Vector3.up,GameCamera.instance.transform.forward);
@@ -68,9 +69,11 @@ namespace FirstValheimMod
 
         private void InitConfigs()
         {
-            TrowLight = Config.Bind("Input", "TrowLight", KeyboardShortcut.Deserialize("F"), "Hotkey to throw flashlight");
-            FlareColor = Config.Bind("Visual", "FlareColor", "#FFAA00", "Color of the light");
-            FlareLightStrenght = Config.Bind("Visual","FlareLightStrenght",1.5f,"Strenght of the flare color");
+            FlareLightTrow = Config.Bind("Flare", "TrowLight", KeyboardShortcut.Deserialize("F"), "Hotkey to throw flashlight");
+            FlareLightColor = Config.Bind("Flare", "FlareColor", "#FFAA00", "Color of the light");
+            FlareLightStrenght = Config.Bind("Flare","FlareLightStrenght",1.5f,"Strenght of the flare color");
+            FlareLightRange = Config.Bind("Flare", "FlareLightRange", 10f,"Range of the flare");
+
         }
 
     }

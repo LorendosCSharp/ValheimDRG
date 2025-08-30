@@ -1,6 +1,6 @@
 # ValheimDRG
 
-**Version:** 1.0.1
+**Version:** 1.0.3
 **Website:** [https://github.com/LorendosCSharp/ValheimDRG](https://github.com/LorendosCSharp/ValheimDRG)  
 
 ## Description
