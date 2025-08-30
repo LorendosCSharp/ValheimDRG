@@ -1,4 +1,5 @@
 ﻿using BepInEx.Configuration;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -53,7 +54,7 @@ namespace FirstValheimMod
             flare.GO.transform.position = spawnPosition;
             flare.GO.transform.rotation = Quaternion.LookRotation(direction.normalized);
             flare.GO.SetActive(true);
-
+            StartCoroutine(flare.Disable());
             if (flare.Rigidbody != null)
                 flare.Rigidbody.AddForce(direction.normalized * force, ForceMode.Impulse);
 
@@ -62,8 +63,9 @@ namespace FirstValheimMod
         }
 
         #region Pool
-        public void InstantiateFlares(float flareStenght, string flareColor,float flareRange)
+        public void InstantiateFlares(float flareStenght, string flareColor,float flareRange,float flareTimeToDisable)
         {
+            MyLogger.Warn($"Flare Info \n Flare Strenght{flareStenght} Flare Color{flareColor} Flare Range{flareRange} Flare Time To Disable{flareTimeToDisable}");
             for (int i = 0; i < poolSize; i++)
             {
                 GameObject flareGO = Instantiate(FlareAsset, transform);
@@ -79,7 +81,7 @@ namespace FirstValheimMod
                 Initializing the flares 
                  */
 
-                PooledFlare pf = new PooledFlare(flareGO);
+                PooledFlare pf = new PooledFlare(flareGO,flareTimeToDisable);
 
                 if (pf.GO == null)
                 {
@@ -119,13 +121,21 @@ namespace FirstValheimMod
         public GameObject GO;
         public Rigidbody Rigidbody;
         public Light Light;
+        public float time;
 
-        public PooledFlare(GameObject go)
+        public PooledFlare(GameObject go, float timeToDisable)
         {
             GO = go;
             Rigidbody = go.GetComponent<Rigidbody>();
             Light = go.GetComponentInChildren<Light>();
+            time = timeToDisable;
             GO.SetActive(false);
+        }
+
+        public IEnumerator Disable()
+        {
+            yield return new WaitForSeconds(time);
+            this.GO.SetActive(false);
         }
     }
 }

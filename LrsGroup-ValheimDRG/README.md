@@ -1,6 +1,6 @@
 # ValheimDRG
 
-**Version:** 1.0.3
+**Version:** 1.0.4
 **Website:** [https://github.com/LorendosCSharp/ValheimDRG](https://github.com/LorendosCSharp/ValheimDRG)  
 
 ## Description
@@ -20,16 +20,20 @@ ValheimDRG adds functions inspired by the game **Deep Rock Galactic** to Valheim
 - `denikson-BepInExPack_Valheim-5.4.2100`
 
 ## Config
-Config is located at BepInEx/config in com.lorendos.cfg
+Config is located at BepInEx/config in `com.lorendos.cfg`
 
 You can change:
 ### Flare
-- Flare color          | standart #FFAA00
-- Flare intensity      | standart 1.5f
-- Flare range          | standart 10f
-- Flare trow button    | standart F
+| Setting                  | Default     |
+|--------------------------|-------------|
+| Flare color              | #FFAA00     |
+| Flare intensity          | 1.5f        |
+| Flare range              | 10f         |
+| Flare throw button       | F           |
+| Flare time before disable| 20f         |
 
 ## Support
 For bug reports, suggestions, or questions, please visit the [GitHub repository](https://github.com/LorendosCSharp/ValheimDRG).
+
 
 

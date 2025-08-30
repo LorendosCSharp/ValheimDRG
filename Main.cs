@@ -14,11 +14,13 @@ namespace FirstValheimMod
         const string pluginName = "DRGFlashlight";
         const string pluginVersion = "0.0.1";
 
+        #region Flare Config
         public static ConfigEntry<KeyboardShortcut> FlareLightTrow;
         public static ConfigEntry<string> FlareLightColor;
         public static ConfigEntry<float> FlareLightStrenght;
         public static ConfigEntry<float> FlareLightRange;
-
+        public static ConfigEntry<float> FlareLightTimeToDisable;
+        #endregion
         private readonly Harmony HarmonyInstance = new Harmony(pluginGUID);
 
         GameObject flashlightGO;
@@ -51,7 +53,7 @@ namespace FirstValheimMod
                 SceneManager.MoveGameObjectToScene(flashlightGO, scene);
                 flashlight = flashlightGO.AddComponent<Flashlight>();
 
-                flashlight.InstantiateFlares(FlareLightStrenght.Value, FlareLightColor.Value,FlareLightRange.Value);
+                flashlight.InstantiateFlares(FlareLightStrenght.Value, FlareLightColor.Value,FlareLightRange.Value, FlareLightTimeToDisable.Value);
             }
         }
 
@@ -73,7 +75,7 @@ namespace FirstValheimMod
             FlareLightColor = Config.Bind("Flare", "FlareColor", "#FFAA00", "Color of the light");
             FlareLightStrenght = Config.Bind("Flare","FlareLightStrenght",1.5f,"Strenght of the flare color");
             FlareLightRange = Config.Bind("Flare", "FlareLightRange", 10f,"Range of the flare");
-
+            FlareLightTimeToDisable = Config.Bind("Flare", "FlareLightTimeToDisable", 20f, "Time before the flare disables itself");
         }
 
     }
