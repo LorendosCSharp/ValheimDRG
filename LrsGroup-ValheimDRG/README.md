@@ -19,5 +19,16 @@ ValheimDRG adds functions inspired by the game **Deep Rock Galactic** to Valheim
 ## Dependencies
 - `denikson-BepInExPack_Valheim-5.4.2100`
 
+## Config
+Config is located at BepInEx/config in com.lorendos.cfg
+
+You can change:
+### Flare
+- Flare color        |
+- Flare intensity    |  
+- Flare range        |
+- Flare trow button  |    
+
 ## Support
 For bug reports, suggestions, or questions, please visit the [GitHub repository](https://github.com/LorendosCSharp/ValheimDRG).
+
