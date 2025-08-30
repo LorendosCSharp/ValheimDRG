@@ -24,11 +24,12 @@ Config is located at BepInEx/config in com.lorendos.cfg
 
 You can change:
 ### Flare
-- Flare color        |
-- Flare intensity    |  
-- Flare range        |
-- Flare trow button  |    
+- Flare color          | standart #FFAA00
+- Flare intensity      | standart 1.5f
+- Flare range          | standart 10f
+- Flare trow button    | standart F
 
 ## Support
 For bug reports, suggestions, or questions, please visit the [GitHub repository](https://github.com/LorendosCSharp/ValheimDRG).
+
 
